@@ -1,7 +1,7 @@
 Some topics to refresh and practice more often:
 
-- deque in Python
-- iterative traversal with BFS
+-   deque in Python
+-   iterative traversal with BFS
 
 ## Line Sweep / Diff Array
 
@@ -9,12 +9,12 @@ Whenever we are working with intervals, instead of saving an operation for each 
 
 The way in which an interval is represented in a `diff` array is simple to understand with the right intuition:
 
-- A certain operation needs to be applied with elements inside of the interval, say a simple $+1$.
-- To mark the start of the operation, we register the operation starting at a given index `i`.
-- The mark above will mean that all elements starting at `start_idx` until the end of the `diff` array ($\rightarrow$ `n`), will apply said operation
-- We know that the operation shouldn't be applied no longer than just the end of the interval. To achieve this we do the following:
-- We mark an exactly opposite operation, $-1$, starting just after the interval ends, so, at `end_idx + 1`.
-- This will counter the original operation for every element after `end_idx` until the end of `diff`.
+-   A certain operation needs to be applied with elements inside of the interval, say a simple $+1$.
+-   To mark the start of the operation, we register the operation starting at a given index `i`.
+-   The mark above will mean that all elements starting at `start_idx` until the end of the `diff` array ($\rightarrow$ `n`), will apply said operation
+-   We know that the operation shouldn't be applied no longer than just the end of the interval. To achieve this we do the following:
+-   We mark an exactly opposite operation, $-1$, starting just after the interval ends, so, at `end_idx + 1`.
+-   This will counter the original operation for every element after `end_idx` until the end of `diff`.
 
 The following code exemplifies line sweep with a simple example:
 
@@ -37,7 +37,7 @@ for start, end, op in operations:
 sweep = 0
 for i in range(n):
     sweep += diff[i]
-    # Apply and accumulate (sweep) operations 
+    # Apply and accumulate (sweep) operations
     original[i] += sweep
 
 print(original)
@@ -80,14 +80,14 @@ We perform Bit Shifting to shift ALL THE BITS of an int to the right or left.
 
 The shift does NOT cycle the bits, but the state of the bit we add or remove can change. Specifically, the behavior for shifts will is:
 
-- For shifts to the left, be the number either positive or negative, we add 0s at the rightmost position.
-- For shifts to the right things change a bit. For positive numbers we add 0s at the leftmost position. 
-- For negative numbers, which are represented in two's complement, we add 1s at the leftmost position in order to preserve the negative value. This because a complement means that bits are inverted "infinitely", so all 0s to the left of positive numbers would acount for 1s.
+-   For shifts to the left, be the number either positive or negative, we add 0s at the rightmost position.
+-   For shifts to the right things change a bit. For positive numbers we add 0s at the leftmost position.
+-   For negative numbers, which are represented in two's complement, we add 1s at the leftmost position in order to preserve the negative value. This because a complement means that bits are inverted "infinitely", so all 0s to the left of positive numbers would acount for 1s.
 
 Remember, to convert a number to and from two's complement we:
 
-- Invert the bits
-- Add one
+-   Invert the bits
+-   Add one
 
 The operator shifts an integer (the one to its left), by X bits (the int to its right).
 
@@ -140,22 +140,22 @@ One of the most commonly used for leetcode problems because of its interesting p
 The best way to see the operator is as a "bit flip", which can be seen in the operator's truth table:
 
 | $A$ | $B$ | $A \oplus B$ |
-|:-:|:-:|:-------:|
-| 0 | 0 |    0    |
-| 0 | 1 |    1    |
-| 1 | 0 |    1    |
-| 1 | 1 |    0    |
+| :-: | :-: | :----------: |
+|  0  |  0  |      0       |
+|  0  |  1  |      1       |
+|  1  |  0  |      1       |
+|  1  |  1  |      0       |
 
 Viewing the operation as nothing but a "toggle", we can easily identify the following properties:
 
-- Commutative: $a \oplus b = b \oplus a$
-- Associative: $a \oplus (b \oplus c) = (a \oplus b) \oplus c$
-- Identity: $a \oplus 0 = a$ (doesn't change)
-- Self-inverse: $a \oplus a = 0$ (always is 0)
+-   Commutative: $a \oplus b = b \oplus a$
+-   Associative: $a \oplus (b \oplus c) = (a \oplus b) \oplus c$
+-   Identity: $a \oplus 0 = a$ (doesn't change)
+-   Self-inverse: $a \oplus a = 0$ (always is 0)
 
 Taking these properties we can create interesting phenomenon to simplify complex calculations:
 
-- Cancellation: When a same element is XORed with itself an even number of times, it cancels to just $0$. Similarly, the element XORed with itself an odd number of times will just leave the original element.
+-   Cancellation: When a same element is XORed with itself an even number of times, it cancels to just $0$. Similarly, the element XORed with itself an odd number of times will just leave the original element.
 
 ## Reverse Mapping
 
@@ -173,9 +173,9 @@ A **disjoin-set data structure** keeps track of $n$ elements along one or more p
 
 Keeping elements in such sets or groups allow us to perform a very powerful algorithm called **union-find**. The algorithm has three primary operations:
 
-- `Make(x)`: Create a new set with one element
-- `Find(x)`: Determine the subset where an element is contained
-- `Union(x, y)`: Union of $S_x$ and $S_y$ only if both elements $x$ and $y$ are in fact in distinct sets, such that $S_x \neq S_y$.
+-   `Make(x)`: Create a new set with one element
+-   `Find(x)`: Determine the subset where an element is contained
+-   `Union(x, y)`: Union of $S_x$ and $S_y$ only if both elements $x$ and $y$ are in fact in distinct sets, such that $S_x \neq S_y$.
 
 The most common representation for this data structure is a tree:
 
@@ -250,24 +250,24 @@ print(ds.find(4))  # Should output root of set containing 4, which is 3
 
 An **LRU Cache** stands for Least Recently Used Cache. It works with a given `capacity`, defined when instantiated, so that it will store up to a certain number of elements. It's most interesting functionality, and the one that gives it its name, is that it will keep an "order" or some type of "timestamp" of when an element was last used. This way, we could say that:
 
-- Any operation over a certain key of the cache, (be it `put(key, val)` or `get(key)`), will make the given key the **most recently used** element (i.e.: freshest element).
-- On the contrary, as we run operations over other keys, we'll have a ***least recently used** element (i.e.: oldest element to have been used).
+-   Any operation over a certain key of the cache, (be it `put(key, val)` or `get(key)`), will make the given key the **most recently used** element (i.e.: freshest element).
+-   On the contrary, as we run operations over other keys, we'll have a **\*least recently used** element (i.e.: oldest element to have been used).
 
 Keeping this order is vital, because our cache has a limited `capacity`.:
 
-- If we want to insert a new (key, val) pair to a **FULL** LRU Cache, we will remove the **least recently used** to make space for our **most recently used**, and new, element.
-- The above process is called `eviction`.
+-   If we want to insert a new (key, val) pair to a **FULL** LRU Cache, we will remove the **least recently used** to make space for our **most recently used**, and new, element.
+-   The above process is called `eviction`.
 
 What data structure could help with this? Yes, an **ordered dict**.
 
 An **ordered dict** data structure keeps elements in a hashmap with a given order. The powerful thing about this dictionary is its use of a **doubly linked list** beneath it to keep the order in which each element has been used. This way, we can keep O(1) insertion, deletion, and look-up times, thus being very very efficient.
 
 As a refresher:
- 
-- A `DLL` data structure contains nothing but a `head` and `tail` properties. Both of these are Doubly Linked List `Node` objects.
-- Each `Node` object contains as properties: `val`, `prev`, and `next`, where `prev` and `next` contain references to other `Node` objects.
-- So, an empty Doubly Linked List will just contain a `head` and `tail` pointing to each other.
-- But a filled DLL will have references to nodes between `head` until getting to `tail`.
+
+-   A `DLL` data structure contains nothing but a `head` and `tail` properties. Both of these are Doubly Linked List `Node` objects.
+-   Each `Node` object contains as properties: `val`, `prev`, and `next`, where `prev` and `next` contain references to other `Node` objects.
+-   So, an empty Doubly Linked List will just contain a `head` and `tail` pointing to each other.
+-   But a filled DLL will have references to nodes between `head` until getting to `tail`.
 
 The best way to have O(1) look-up times for any LinkedList is through the use of a hashmap `nodes`. Specifically, using `key` : `Node(val)` pairs.
 
@@ -291,8 +291,8 @@ def move_to_end(key):
 
 Python's built-in `OrderedDict` already contains the method `move_to_end(key, last=True)`.
 
-- Move the key to the left end (first element) with `last=False` or...
-- Move the key to the right end (last element) with `last=True`
+-   Move the key to the left end (first element) with `last=False` or...
+-   Move the key to the right end (last element) with `last=True`
 
 So, the final implementation of an `LRUCache` class using `OrderedDict` looks like:
 
@@ -304,7 +304,7 @@ class LRUCache:
     def __init__(self, capacity):
         self.capacity = capacity
         self.d = OrderedDict()
-    
+
     def get(self, key):
         if key not in self.d:
             return -1
@@ -323,3 +323,69 @@ class LRUCache:
 ```
 
 > Check out Leetcode [146. LRU Cache](https://leetcode.com/problems/lru-cache/description/)
+
+## Combinations and Permutations
+
+[Fundamental concepts from GeeksForGeeks](https://www.geeksforgeeks.org/permutations-and-combinations/)
+
+They are both fundamental concepts related to picking items from a set. The key difference is that:
+
+-   **Permutations:** **Arrange** elements considering order of selection.
+-   **Combinations:** **Select** elements without considering order.
+
+### Permutations
+
+In permutations, $\{A,B\}\neq\{B,A\}$, because we care for the order of arrangement.
+
+Number of permutations of $r$ elements from a set of $n$ elements is called $nPr$. This means we get the number of all permutations of size = $r$.
+
+The intuition is that we can set $n$ distinct items in a set in a given order by taking $r(r<n)$ such that $n(n-1)(n-2)\ldots(n-r+1)$. This is true because there's $n$ different choices for the first element, but for the second element to choose we only have $n-1$ choices (since we exhausted the first element choice). The same applies for the next choice, and so on, until we've selected exactly $r$ items. Another way to write this formula is:
+
+$$
+\begin{align}
+P(n,r) = nPr = \frac{n!}{(n-r)!}
+\end{align}
+$$
+
+```python
+def permute(path, used):
+    if len(path) == r:
+        print(path)
+        return
+    for i in range(len(arr)):
+        if not used[i]:  # Ensure we don’t reuse elements
+            used[i] = True
+            permute(path + [arr[i]], used)
+            used[i] = False  # Backtrack
+
+arr = ['A', 'B', 'C']
+permute([], [False] * len(arr))
+```
+
+### Combinations
+
+In combinations, $\{A, B\}=\{B, A\}$.
+
+Number of combinations of $r$ elements from a set of $n$ is called $nCr$, or _n choose r_.
+
+We use the formula:
+
+$$
+\begin{align}
+C(n,r) = nCr = \frac{n!}{r!(n-r)!}
+\end{align}
+$$
+
+```python
+def combine(arr, r, start=0, path=[]):
+    if len(path) == r:  # Base case: if the combination has r elements
+        print(path)
+        return
+
+    for i in range(start, len(arr)):  # Ensure order doesn’t matter
+        combine(arr, r, i + 1, path + [arr[i]])  # Recursive call with next index
+
+arr = ['A', 'B', 'C', 'D']
+r = 3
+combine(arr, r)
+```
